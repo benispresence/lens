@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Lens - Submit Movie</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="browse.html">Browse Movies</a></li>
+            <li><a href="submit.html">Submit Movie</a></li>
+        </ul>
+    </nav>
+    <div class="submit-form">
+        <h1>Submit Your Movie</h1>
+        <form onsubmit="sendEmail(event)">
+            <input type="text" placeholder="IMDB Link" required>
+            <input type="text" placeholder="Movie Name" required>
+            <input type="text" placeholder="Vimeo Trailer Link" required>
+            <textarea placeholder="Message" required></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script>
+        function sendEmail(event) {
+            event.preventDefault();
+            const imdbLink = event.target[0].value;
+            const movieName = event.target[1].value;
+            const vimeoLink = event.target[2].value;
+            const message = event.target[3].value;
+
+            const emailBody = `IMDB Link: ${imdbLink}\nMovie Name: ${movieName}\nVimeo Trailer Link: ${vimeoLink}\nMessage: ${message}`;
+            const mailtoLink = `mailto:benjaminharmat@gmail.com?subject=Movie Submission&body=${encodeURIComponent(emailBody)}`;
+
+            window.location.href = mailtoLink; // Opens the local email application
+        }
+    </script>
+</body>
+</html>
